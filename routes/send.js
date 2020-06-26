@@ -23,10 +23,14 @@ transporter.verify((err, success) => {
 });
 
 router.post('/', (req, res, next) => {
-  const { email } = req.body;
-  let content = `email: ${email}`;
+  const { name, video, text } = req.body[0];
+
+  let content = `Titre de l'article: ${name}
+  \n Contenu: ${text}
+  \n Lien de la vidéo: ${video}`;
+
   let mail = {
-    from: email,
+    from: 'dinhospital@gmail.com',
     to: process.env.NODE_ENV_MAIL_USER,
     subject: "Dinhospital: les info",
     text: content
